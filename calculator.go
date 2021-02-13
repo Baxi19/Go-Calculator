@@ -18,8 +18,16 @@ func main() {
 	values := strings.Split(operation, "+")
 
 	//Cast String as Int
-	operator1, _ := strconv.Atoi(values[0])
-	operator2, _ := strconv.Atoi(values[1])
+	operator1, err1 := strconv.Atoi(values[0])
+	operator2, err2 := strconv.Atoi(values[1])
 
-	fmt.Println(operator1 + operator2)
+	//check if exist any error
+	if err1 != nil {
+		panic(err1)
+	} else if err2 != nil {
+		panic(err2)
+	} else {
+		fmt.Println(operator1 + operator2)
+	}
+
 }
