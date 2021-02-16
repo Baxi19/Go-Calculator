@@ -9,42 +9,47 @@ import (
 	"strings"
 )
 
-func main() {
+type calc struct {}
+
+func (calc) operate(input string, operator string) int {
+	cleanInput := strings.Split(input, operator)
+	operator1 := parsear(cleanInput[0])
+	operator2 := parsear(cleanInput[1])
+
+	switch operator {
+	case "+":
+		fmt.Println(operator1 + operator2)
+		return (operator1 + operator2)
+	case "-":
+		fmt.Println(operator1 - operator2)
+		return (operator1 - operator2)
+	case "*":
+		fmt.Println(operator1 * operator2)
+		return (operator1 * operator2)
+	case "/":
+		fmt.Println(operator1 / operator2)
+		return (operator1 / operator2)
+	default:
+		log.Println(operator, "operation is not supported!")
+		return 0
+	}
+}
+
+func parsear(entrada string) int {
+	operator, _ := strconv.Atoi(entrada)
+	return operator
+}
+
+func readInput() string {
 	//get the user input
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()
-	operador := "-"
-	operation := scanner.Text()
+	return scanner.Text()
+}
 
-	// using split, get values as list
-	values := strings.Split(operation, operador)
-
-	//Cast String as Int
-	operator1, err1 := strconv.Atoi(values[0])
-	operator2, err2 := strconv.Atoi(values[1])
-
-	//check if exist any error
-	if err1 != nil {
-		//panic(err1)
-		log.Println(err1.Error())
-	} else if err2 != nil {
-		//panic(err2)
-		log.Println(err2.Error())
-	} else {
-
-		switch operador {
-		case "+":
-			fmt.Println(operator1 + operator2)
-		case "-":
-			fmt.Println(operator1 - operator2)
-		case "*":
-			fmt.Println(operator1 * operator2)
-		case "/":
-			fmt.Println(operator1 / operator2)
-		default:
-			log.Println(operador, "operation is not supported!")
-		}
-
-	}
-
+func main() {
+	read := readInput()
+	operator := readInput()
+	c := calc{}
+	fmt.Println(c.operate(read, operator))
 }
