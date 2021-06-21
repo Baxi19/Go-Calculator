@@ -1,2 +1,2 @@
 # Go-Calculator
-My first code in GO
+Basic example of calculator in GO :alien:
